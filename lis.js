@@ -119,22 +119,7 @@ atom = function(token) {
   return Sym(token); // !!Revisit - Sym vs primitive string
 };
 /////////////////////////////////////////////////////////
-////// REPL /////////////////////////////////////////////
-
-repl = function(prompt = "lispy.js> ") {
-  const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  readline.question(prompt, function(exp) {
-    val = evaluate(parse(exp));
-    if (val) {
-      console.log(lispstr(val));
-    }
-    readline.close();
-    repl();
-  });
-};
+////// Formatting function for REPL /////////////////////
 
 lispstr = function(exp) {
   if (exp instanceof List) {
@@ -188,7 +173,6 @@ module.exports = {
   atom: atom,
   standard_env: standard_env,
   lispstr: lispstr,
-  repl: repl,
   parse: parse,
   evaluate: evaluate
 };
